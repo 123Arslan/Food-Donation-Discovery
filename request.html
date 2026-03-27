@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Request food · green & white</title>
+  <!-- CSS (separate block) -->
+  <style>
+    /* ========== CSS ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(165deg, #e6f3e9 0%, #c8e6d9 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem;
+      line-height: 1.5;
+      color: #1a3c2b;
+    }
+
+    /* main white card with green accents */
+    .form-card {
+      max-width: 860px;
+      width: 100%;
+      background: #ffffff;               /* pure white background */
+      border-radius: 36px 36px 36px 36px;
+      box-shadow: 0 25px 40px -14px #1b4c3b;
+      padding: 2.2rem 2.5rem;
+      border: 1px solid #c0dfce;
+      transition: 0.2s;
+    }
+
+    /* green headers & accents */
+    .request-header h1 {
+      font-size: 2.3rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      color: #0b4b2e;                   /* deep green */
+      margin-bottom: 0.15rem;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .request-header h1::before {
+      content: "🥗";
+      font-size: 2rem;
+    }
+
+    .sub-headline {
+      font-size: 1.08rem;
+      color: #2f6b4a;
+      font-weight: 400;
+      border-left: 5px solid #2e8b66;
+      padding-left: 1.2rem;
+      margin-top: 0.3rem;
+      background: #f0f9f2;
+      border-radius: 0 40px 40px 0;
+      padding: 0.7rem 1.2rem;
+      width: fit-content;
+    }
+
+    /* form grid */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 1.3rem;
+      margin-top: 1.8rem;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    /* field labels - green theme */
+    .field-group label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #0f623b;                  /* fresh green */
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .field-group label i {
+      font-style: normal;
+      font-weight: 400;
+      color: #477a5d;
+      font-size: 0.85rem;
+      text-transform: none;
+    }
+
+    /* inputs & select */
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      background: #ffffff;
+      border: 2px solid #cbe5d6;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: #173e2a;
+      transition: 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #1f8f5c;
+      box-shadow: 0 4px 12px rgba(31, 143, 92, 0.25);
+      background-color: #fefffe;
+    }
+
+    input::placeholder, textarea::placeholder, select:invalid {
+      color: #7c9e88;
+      opacity: 0.8;
+      font-weight: 300;
+    }
+
+    select {
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%231f8f5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.2rem;
+    }
+
+    /* custom file upload (green-white) */
+    .file-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #ffffff;
+      border: 2px solid #b3d9c4;
+      border-radius: 40px;
+      padding: 0.2rem 0.2rem 0.2rem 1.2rem;
+    }
+
+    .file-wrapper input[type="file"] {
+      border: none;
+      padding: 0.5rem 0;
+      background: transparent;
+      box-shadow: none;
+      color: #1b6e44;
+      font-size: 0.9rem;
+      width: 0;
+      flex: 1;
+    }
+
+    .file-wrapper input[type="file"]::file-selector-button {
+      display: none;
+    }
+
+    .file-fake-btn {
+      background: #1f8f5c;              /* solid green */
+      border-radius: 40px;
+      padding: 0.7rem 1.8rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: white;
+      white-space: nowrap;
+      border: 1px solid #1f8f5c;
+      transition: 0.1s;
+      cursor: default;
+      box-shadow: 0 4px 8px #a3d1b5;
+    }
+
+    .proof-hint {
+      font-size: 0.9rem;
+      color: #1f5e3d;
+      margin-top: 0.2rem;
+      padding-left: 0.6rem;
+      font-weight: 500;
+    }
+
+    /* message textarea */
+    textarea {
+      border-radius: 30px;
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* submit button – green, with purpose */
+    .submit-action {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .submit-btn {
+      background: #1b7a4b;              /* rich green */
+      border: none;
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 1rem 2.8rem;
+      border-radius: 60px;
+      cursor: pointer;
+      box-shadow: 0 12px 24px -8px #1b6e44;
+      letter-spacing: 0.5px;
+      border: 2px solid #a2e0bd;
+      transition: all 0.2s;
+      min-width: 260px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .submit-btn:hover {
+      background: #11683d;
+      box-shadow: 0 18px 30px -6px #0c4f2f;
+      transform: scale(1.02);
+      border-color: #fff9c4;
+    }
+
+    /* responsive */
+    @media screen and (max-width: 650px) {
+      .form-card { padding: 1.5rem; }
+      .form-grid { gap: 1.2rem; }
+    }
+
+    @media screen and (max-width: 550px) {
+      .form-grid {
+        grid-template-columns: 1fr;  /* stack */
+      }
+      .full-width {
+        grid-column: span 1;
+      }
+      .request-header h1 {
+        font-size: 1.9rem;
+      }
+      .file-wrapper {
+        flex-wrap: wrap;
+        background: transparent;
+        border: none;
+        padding: 0;
+      }
+      .file-wrapper input[type="file"] {
+        border: 2px solid #b3d9c4;
+        border-radius: 40px;
+        padding: 0.7rem 1rem;
+        background: white;
+        width: 100%;
+      }
+      .file-fake-btn {
+        display: none;
+      }
+      .submit-btn {
+        width: 100%;
+        font-size: 1.2rem;
+        padding: 0.9rem 1.5rem;
+      }
+    }
+
+    /* extra green touches */
+    .phone-hint {
+      color: #2e8b66;
+      font-weight: 500;
+      font-size: 0.8rem;
+      margin-left: auto;
+    }
+
+    /* proof hint dynamic */
+    .proof-hint i {
+      color: #0f623b;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-card">
+    <div class="request-header">
+      <h1>Request Food for Those in Need</h1>
+      <div class="sub-headline">NGOs and individuals can request food here</div>
+    </div>
+
+    <!-- form starts -->
+    <form id="foodRequestForm">
+      <div class="form-grid">
+        <!-- Organization / Individual Name -->
+        <div class="field-group full-width">
+          <label>🏛️ Organization / Individual Name <i>(your name or organization)</i></label>
+          <input type="text" id="orgName" placeholder="e.g., Green trust / Sarah Khan" value="">
+        </div>
+
+        <!-- Email Address -->
+        <div class="field-group">
+          <label>📧 Email Address</label>
+          <input type="email" id="email" placeholder="you@email.com" value="">
+        </div>
+
+        <!-- Phone Number -->
+        <div class="field-group">
+          <label>📞 Phone Number <span class="phone-hint"><!--+92 XXX XXXXXXX--></span></label>
+          <input type="tel" id="phone" placeholder="+92 300 1234567" value="">
+        </div>
+
+        <!-- Type (select) -->
+        <div class="field-group">
+          <label>📋 Type</label>
+          <select id="requestType">
+            <option value="" disabled selected>Select type</option>
+            <option value="NGO">NGO / non-profit</option>
+            <option value="Individual">Individual / family</option>
+            <option value="Community">Community group</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <!-- Food Needed -->
+        <div class="field-group">
+          <label>🍚 Food Needed</label>
+          <input type="text" id="foodNeeded" placeholder="e.g., Rice, Daal, Cooked Meal" value="">
+        </div>
+
+        <!-- Quantity Needed -->
+        <div class="field-group">
+          <label>⚖️ Quantity Needed</label>
+          <input type="text" id="quantity" placeholder="e.g., 10 kg, 50 plates" value="">
+        </div>
+
+        <!-- Number of People to Feed -->
+        <div class="field-group">
+          <label>👥 Number of People to Feed</label>
+          <input type="text" id="peopleCount" placeholder="e.g., 50" value="">
+        </div>
+
+        <!-- Required By Date -->
+        <div class="field-group">
+          <label>📅 Required By Date</label>
+          <input type="text" id="requiredDate" placeholder="mm/dd/yyyy" value="">
+        </div>
+
+        <!-- Pickup / Delivery Address -->
+        <div class="field-group full-width">
+          <label>📍 Pickup / Delivery Address</label>
+          <input type="text" id="address" placeholder="Full address, street, city" value="">
+        </div>
+
+        <!-- Proof / Document -->
+        <div class="field-group full-width">
+          <label>📎 Proof / Document <i>(for verification)</i></label>
+          <div class="file-wrapper">
+            <input type="file" id="proofFile" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+            <span class="file-fake-btn">Choose File</span>
+          </div>
+          <div class="proof-hint" id="fileHint">No file chosen</div>
+        </div>
+
+        <!-- Message / Reason -->
+        <div class="field-group full-width">
+          <label>💬 Message / Reason</label>
+          <textarea id="reason" placeholder="Why do you need food assistance? Please share brief context ..."></textarea>
+        </div>
+      </div>
+
+      <!-- Submit button – performs its purpose: shows summary & confirmation -->
+      <div class="submit-action">
+        <button type="button" class="submit-btn" id="submitRequestBtn">🌱 Submit Request</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ========== JAVASCRIPT (separate) ========== -->
+  <script>
+    (function() {
+      // get elements
+      const fileInput = document.getElementById('proofFile');
+      const fileHint = document.getElementById('fileHint');
+      const submitBtn = document.getElementById('submitRequestBtn');
+
+      // ---- 1. file input live hint (No file chosen / filename) ----
+      if (fileInput && fileHint) {
+        fileInput.addEventListener('change', function() {
+          if (fileInput.files.length > 0) {
+            const name = fileInput.files[0].name;
+            fileHint.textContent = name.length > 35 ? name.substr(0, 32) + '...' : name;
+          } else {
+            fileHint.textContent = 'No file chosen';
+          }
+        });
+      }
+
+      // ---- 2. submit button performs its purpose: validation + alert summary ----
+      submitBtn.addEventListener('click', function() {
+        // collect all field values
+        const org = document.getElementById('orgName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const typeSelect = document.getElementById('requestType');
+        const type = typeSelect.options[typeSelect.selectedIndex]?.value || '';
+        const food = document.getElementById('foodNeeded').value.trim();
+        const quantity = document.getElementById('quantity').value.trim();
+        const people = document.getElementById('peopleCount').value.trim();
+        const date = document.getElementById('requiredDate').value.trim();
+        const address = document.getElementById('address').value.trim();
+        const reason = document.getElementById('reason').value.trim();
+
+        // file name (if any)
+        let fileName = 'No file attached';
+        if (fileInput.files.length > 0) {
+          fileName = fileInput.files[0].name;
+        }
+
+        // very basic required fields check (at least org, email, food, reason)
+        if (!org || !email || !food || !reason) {
+          alert('❗ Please fill at least: Organization/Name, Email, Food Needed, and Reason.');
+          return;
+        }
+
+        // simple email format check (very basic)
+        if (!email.includes('@') || !email.includes('.')) {
+          alert('❗ Please enter a valid email address (e.g., name@domain.com).');
+          return;
+        }
+
+        // prepare a summary message
+        let summary = '✅ REQUEST SUMMARY\n\n';
+        summary += `Organization/Name: ${org || '—'}\n`;
+        summary += `Email: ${email}\n`;
+        summary += `Phone: ${phone || '—'}\n`;
+        summary += `Type: ${type || '—'}\n`;
+        summary += `Food needed: ${food}\n`;
+        summary += `Quantity: ${quantity || '—'}\n`;
+        summary += `People to feed: ${people || '—'}\n`;
+        summary += `Required by: ${date || '—'}\n`;
+        summary += `Address: ${address || '—'}\n`;
+        summary += `Document: ${fileName}\n`;
+        summary += `Reason: ${reason.substring(0, 80)}${reason.length > 80 ? '…' : ''}\n\n`;
+        summary += `Thank you for your request. A confirmation would be sent in a real app.`;
+
+        // show the popup (purpose fulfilled)
+        alert(summary);
+
+        // (optional) you could also log or enable further actions
+        // but we keep it simple: button works as intended.
+      });
+
+      // Extra optional: update phone placeholder pattern (just for UX)
+      const phoneField = document.getElementById('phone');
+      if (phoneField) {
+        phoneField.addEventListener('focus', function() {
+          if (!phoneField.value) phoneField.placeholder = '+92 300 1234567';
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

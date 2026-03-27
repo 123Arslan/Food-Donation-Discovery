@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodShare – Contact</title>
+    <!-- Font Awesome 6 (free) for icons & map placeholder style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ========== CSS ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #fefcf5;
+            color: #2e3b2e;
+            line-height: 1.5;
+        }
+
+        /* container utility */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        header {
+    background-color: #2e7d32;
+    /* deep green */
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px rgba(0, 40, 0, 0.15);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #fff8e7;
+}
+
+.logo span {
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: #ffecb3;
+    margin-left: 6px;
+}
+
+
+
+
+.header-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .header-btn {
+      background: white;
+      border: 2px solid #2f8f53;
+      padding: 0.4rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #2f8f53;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .header-btn.active {
+      background: white;
+      color: green !important;
+      border-color: #1e7a47;
+    }
+
+    .header-btn:hover {
+      background: #e0f2e0;
+    }
+
+    .header-btn.active:hover {
+      background: #e0f2e0;
+    }
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.8rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #f1f8e9;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    border-bottom: 3px solid transparent;
+    transition: 0.2s;
+}
+
+nav a:hover,
+nav a.active {
+    border-bottom-color: #ffd54f;
+    color: #ffffff;
+}
+
+
+
+        /* --- navigation / header (in page style) --- */
+
+        /*
+        .top-bar {
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 40, 0, 0.05);
+            padding: 1rem 0;
+            border-bottom: 2px solid #c8e6c9;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2e7d32;
+        }
+
+        .logo-area i {
+            font-size: 2.2rem;
+            color: #f9a825;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2rem;
+            list-style: none;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1e3a2a;
+            font-size: 1.1rem;
+            transition: 0.2s;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #f9a825;
+            color: #2e7d32;
+        }
+*/
+        /* --- page heading (soft) --- */
+        .page-title {
+            text-align: center;
+            margin: 3rem 0 0.5rem;
+        }
+
+        .page-title h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #1b5e20;
+            letter-spacing: -0.5px;
+        }
+
+        .page-title p {
+            font-size: 1.3rem;
+            color: #558b2f;
+            margin-top: 0.2rem;
+        }
+
+        hr.separator {
+            border: none;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #a5d6a7, #c8e6c9, #a5d6a7, transparent);
+            width: 70%;
+            margin: 0.8rem auto 3rem;
+        }
+
+        /* --- contact grid: form + info --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        /* form card */
+        .form-card {
+            background: white;
+            border-radius: 36px 36px 36px 36px;
+            padding: 2.5rem 2.2rem;
+            box-shadow: 0 20px 40px -12px rgba(46, 91, 28, 0.2);
+            border: 1px solid #e0f2e0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #1f4a2c;
+            display: block;
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+
+        .field-hint {
+            font-size: 0.9rem;
+            color: #6b8c6b;
+            margin-bottom: 0.2rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.85rem 1.2rem;
+            border: 2px solid #dcedc8;
+            border-radius: 50px;
+            font-size: 1rem;
+            background-color: #f9fff9;
+            transition: 0.2s;
+        }
+
+        textarea {
+            border-radius: 30px;
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #7cb342;
+            box-shadow: 0 0 0 4px rgba(124, 179, 66, 0.15);
+        }
+
+        .send-btn {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 1rem 2.6rem;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 8px 16px #9ccc9c;
+            transition: 0.2s;
+            width: auto;
+            display: inline-block;
+        }
+
+        .send-btn:hover {
+            background: #1b5e20;
+            transform: scale(1.02);
+            box-shadow: 0 12px 20px #81c784;
+        }
+
+        .send-btn i {
+            margin-right: 8px;
+        }
+
+        /* contact info block */
+        .info-block {
+            background: #edf7ed;
+            border-radius: 36px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 20px 30px -10px #b9dbb9;
+            border: 2px solid #c5e0c5;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.2rem 1.5rem;
+            border-radius: 80px;
+            box-shadow: 0 4px 8px #cfe9cf;
+        }
+
+        .info-icon {
+            background: #2e7d32;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+        }
+
+        .info-detail h4 {
+            font-size: 1.2rem;
+            color: #1a3b1a;
+        }
+
+        .info-detail p {
+            font-size: 1.1rem;
+            color: #2b532b;
+        }
+
+        /* map placeholder (interactive) */
+        .map-placeholder {
+            margin-top: 2rem;
+            background: #cfd8cf;
+            border-radius: 40px;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #1e3a2e;
+            border: 4px solid #a3c9a3;
+            box-shadow: inset 0 0 0 3px rgba(255,255,240,0.7);
+            font-size: 1.2rem;
+            gap: 0.5rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .map-placeholder i {
+            font-size: 3rem;
+            color: #374737;
+        }
+
+        .map-placeholder:hover {
+            background: #b8dbb8;
+        }
+
+        /* footer */
+        footer {
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+    color: #ffffff;
+    padding: 3rem 2rem 1.5rem;
+    margin-top: auto;
+    position: relative;
+}
+
+/* Top wave decoration */
+.footer-wave {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%232e7d32" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,170.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/></svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Footer main container */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Footer columns */
+.footer-col {
+    padding: 0rem;
+}
+
+.footer-col h3 {
+    color: #ffd966;
+    font-size: 1.3rem;
+    margin-bottom: 0rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-col h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    /*  background: #ffd966;*/
+}
+
+.footer-col p {
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Logo in footer */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.footer-logo i {
+    font-size: 2.5rem;
+    color: #ffd966;
+}
+
+.footer-logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.footer-logo-text span {
+    color: #ffd966;
+    font-size: 1rem;
+    display: block;
+}
+
+/* Quick links */
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #ffd966;
+    transform: translateX(5px);
+}
+
+.footer-links a i {
+    margin-right: 8px;
+    font-size: 0.9rem;
+    color: #ffd966;
+}
+
+/* Contact info */
+.contact-info {
+    list-style: none;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+    color: #e0e0e0;
+}
+
+.contact-info li i {
+    width: 20px;
+    color: #ffd966;
+    font-size: 1.1rem;
+}
+
+.contact-info a {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.contact-info a:hover {
+    color: #ffd966;
+}
+
+/* Social media icons */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    align-items: center;
+}
+
+.social-links a:hover {
+    background: #ffd966;
+    color: #1b5e20;
+    transform: translateY(-3px);
+}
+
+.fas fa-map-marker-alt {
+    color: red;
+}
+        /*
+        footer {
+            background: #1d3b1d;
+            color: #e5f0e5;
+            border-radius: 60px 60px 0 0;
+            padding: 3rem 2rem 1.8rem;
+            margin-top: 4rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1.2fr;
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .footer-col p {
+            margin: 1rem 0 0.5rem;
+            color: #d0e7d0;
+        }
+
+        .footer-col h4 {
+            color: #f9e0a0;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-links a {
+            color: #d8f0d8;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-links a:hover {
+            color: #ffd95a;
+        }
+
+        .contact-footer i {
+            width: 24px;
+            color: #ffc107;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #5f7e5f;
+            font-size: 1rem;
+        }
+
+        .copyright i {
+            color: #ffab5c;
+        }
+*/
+        /* utility */
+        .small-note {
+            font-size: 0.9rem;
+            color: #6e8f6e;
+            margin-top: 0.5rem;
+        }
+
+        .success-message {
+            background: #c8f0c8;
+            padding: 0.8rem 1.5rem;
+            border-radius: 100px;
+            color: #144d14;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            border: 2px solid #388e3c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HTML ========== -->
+
+    <!-- header / navigation -->
+      <header>
+        <img src="ff.png" width="250px" height="90px" alt="FoodDonation Logo">
+        <nav>
+            <ul>
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="donor.html">Donor</a></li>
+                <li><a href="impact.html">Our Impact</a></li>
+                <li><a href="contact.html" class="active" id="nav-home">Contact Us</a></li>
+            </ul>
+            
+        </nav>  
+         <div class="header-buttons">
+            <button class="header-btn active" id="headerLoginBtn" onclick="location.href='login signup.html';">Login</button>
+            <button class="header-btn" id="headerSignupBtn" onclick="location.href='login signup.html';">Sign Up</button>
+     <!--<button class="header-btn active" id="headerLoginBtn">Login</button>
+      <button class="header-btn" id="headerSignupBtn" <a href="login signup.html">Sign Up</button>-->
+    </div>
+        
+    </header>
+     <!--
+    <div class="top-bar">
+        <div class="container">
+            <nav>
+                <div class="logo-area">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <span>FoodShare</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Donate Food</a></li>
+                    <li><a href="#">Request Food</a></li>
+                    <li><a href="#">Available Food</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#" style="border-bottom-color: #f9a825;">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div> -->
+
+    <!-- main contact content -->
+    <div class="container">
+        <div class="page-title">
+            <h1>Get in Touch</h1>
+            <p>Have questions? We're here to help.</p>
+        </div>
+        <hr class="separator">
+
+        <div class="contact-grid">
+            <!-- LEFT: contact form -->
+            <div class="form-card">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name <span style="font-weight: normal; color: #588157;"><!--(your name)--></span></label>
+                       <!-- <div class="field-hint"><i class="far fa-user"></i> Your name</div>-->
+                        <input type="text" id="name" name="name" placeholder="Enter your name" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                       <!--<div class="field-hint"><i class="far fa-envelope"></i> youremail@domain.com</div>--> 
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject">
+                            <option value="" disabled selected>Select subject</option>
+                            <option value="donation">Donation enquiry</option>
+                            <option value="request">Food request</option>
+                            <option value="partner">Partnership</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                       <!-- <div class="field-hint">Your message...</div>-->
+                        <textarea id="message" name="message" placeholder="Enter Your message"></textarea>
+                    </div>
+
+                    <button type="submit" class="send-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    <div id="formFeedback" class="small-note" style="margin-top: 1.2rem;"></div>
+                </form>
+            </div>
+
+            <!-- RIGHT: contact info + map -->
+            <div class="info-block">
+                <h2 style="color: #1b4c1b; margin-bottom: 1.8rem; display: flex; gap: 10px;"><!--<i class="fas fa-info-circle"></i> -->Contact Information</h2>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="info-detail">
+                        <h4>Email</h4>
+                        <p>youremail@domain.com</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="info-detail">
+                        <h4>Phone</h4>
+                        <p>+02 XXX XXXX/XX</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="info-detail">
+                        <h4>Address</h4>
+                        <p>Karacati, Pakistan</p>
+                    </div>
+                </div>
+
+                <!-- map placeholder (interactive) -->
+                <div class="map-placeholder" id="mockMap" title="Click to simulate map interaction">
+                    <i class="fas fa-map"></i>
+                    <span>📍 Map: [Karacati, Pakistan]</span>
+                    <span style="font-size: 0.9rem;">(click to show alert)</span>
+                </div>
+                <!--<p style="margin-top: 0.5rem; font-size: 0.95rem;"><i class="fas fa-map-pin"></i> Exact location: Karacati central</p>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+
+     <footer>
+        <div class="footer-wave"></div>
+
+        <div class="footer-container">
+            <!-- Column 1: About -->
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="ff.png" width="200px" height="70px" alt="FoodDonation Logo">
+                </div>
+                <p>Connecting surplus food with those in need. Together we can reduce waste and fight hunger.</p>
+
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-col"  >
+                <h3 style="text-align: center;">Quick Links</h3>
+                <ul class="footer-links " style="text-align: center;">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="impact.html">Our Impact</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+
+             <!-- Column 3: Quick Links -->
+            <div class="footer-col">
+                <h3>Support</h3>
+                <ul class="footer-links ">
+                    <li><a href="Contact us.html">Contact us</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="Privacy Policy.html">Privacy Policy</a></li>
+                    <li><a href="Terms of Service.html">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Contact Info -->
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-location-dot"></i>
+                        <span>123 Food Street, Green Town, Pakistan</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+923430686603">+92 343 0686603</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@fooddonation.com">info@fooddonation.com</a>
+                    </li>
+                </ul>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p style="text-align: center;">2026 Food Donation Platform. All rights reserved</p>
+        </div>
+    </footer>
+
+     <!--
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3 style="color: #ffd97c;">FoodShare</h3>
+                <p>Connecting inspiring food with those who need it most. Together we can <strong>stop hunger</strong>.</p>
+                <p style="font-style: italic; margin-top: 1rem;">— start hunger? no, end hunger. 💚</p>
+            </div>
+            <div class="footer-col">
+                <h4>SUPPORT</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-apple-alt"></i> Donate Food</a></li>
+                    <li><a href="#"><i class="fas fa-hands"></i> Request Food</a></li>
+                    <li><a href="#"><i class="fas fa-carrot"></i> Available Food</a></li>
+                    <li><a href="#"><i class="fas fa-seedling"></i> How It Works</a></li>
+                    <li><a href="#"><i class="fas fa-handshake"></i> Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact-footer">
+                <h4>CONTACT</h4>
+                <ul class="footer-links">
+                    <li><i class="fas fa-envelope"></i> info@foodshare.com</li>
+                    <li><i class="fas fa-phone"></i> +92 XXX XXXX/XX</li>
+                    <li><i class="fas fa-city"></i> karacati, Pakistan</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2024 FoodShare. All rights reserved. Made with <i class="fas fa-heart" style="color: #ffb74d;"></i> by our hunger.
+        </div>
+    </footer> -->
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        (function() {
+            // Contact form handling — it performs the task: shows success and logs (simulates send)
+            const contactForm = document.getElementById('contactForm');
+            const feedbackDiv = document.getElementById('formFeedback');
+
+            // Map placeholder interactive
+            const mapBlock = document.getElementById('mockMap');
+            if (mapBlock) {
+                mapBlock.addEventListener('click', function() {
+                    alert('📍 Map view: Karacati, Pakistan (interactive simulation).\nThank you for using FoodShare contact.');
+                });
+            }
+
+            // Form submit: validation and purposeful action
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();  // no page reload
+
+                // Get values
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const subjectSelect = document.getElementById('subject');
+                const messageText = document.getElementById('message');
+
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
+                const subject = subjectSelect.value;
+                const message = messageText.value.trim();
+
+                // Very basic email check
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!name) {
+                    feedbackDiv.innerHTML = '<span style="color: #b33;"><i class="fas fa-exclamation-circle"></i> Please enter your name.</span>';
+                    return;
+                }
+                if (!emailPattern.test(email)) {
+                    feedbackDiv.innerHTML = '<span style="color: #b33;"><i class="fas fa-exclamation-circle"></i> Enter a valid email (e.g., name@domain.com)</span>';
+                    return;
+                }
+                if (!subject || subject === '') {
+                    feedbackDiv.innerHTML = '<span style="color: #b33;"><i class="fas fa-exclamation-circle"></i> Please select a subject.</span>';
+                    return;
+                }
+                if (!message) {
+                    feedbackDiv.innerHTML = '<span style="color: #b33;"><i class="fas fa-exclamation-circle"></i> Message cannot be empty.</span>';
+                    return;
+                }
+
+                // If all good: perform the "send" action (simulate success)
+                feedbackDiv.innerHTML = '<div class="success-message"><i class="fas fa-check-circle"></i> Message sent! (Demo) We’ll get back to you soon.</div>';
+
+                // Optional: clear fields? Not clearing to keep demo visible, but we can optionally reset
+                // (you could reset if you want: contactForm.reset(), but i keep for demonstration)
+                // Additionally, log to console as realistic behavior
+                console.log('✅ FoodShare contact form submitted', { name, email, subject, message });
+
+                // Bonus: after 4 seconds, remove success but keep hint (optional)
+                setTimeout(() => {
+                    if (feedbackDiv.innerHTML.includes('success')) {
+                        // keep a small reminder
+                        feedbackDiv.innerHTML = '<span style="color: #2e7d32;"><i class="fas fa-check"></i> Previous message sent (demo).</span>';
+                    }
+                }, 5000);
+            });
+
+            // additional: prepopulate email field with placeholder style (already has placeholder)
+            // but we can make the "you@domain.com" appear as hint, consistent with screenshot.
+            // The screenshot shows "you@domain.com" inside name field and email field.
+            // we already have placeholders, also we set field hint above.
+            // Also mimic the exact text: Name field shows "Your name   you@domain.com" style — but that's as label/hint.
+            // I already added .field-hint for name: "Your name", and placeholder "you@domain.com". good.
+
+            // Double-check: the screenshot has "Email youremail@domain.com" as label + ghost.
+            // Our email field has label "Email" and hint "youremail@domain.com" via .field-hint, and placeholder same. 
+            // Subject field default "Select subject" etc.
+
+            // Also to mimic "Name Your name you@domain.com" — the name field hint says "Your name", input shows "you@domain.com"
+            // This is consistent.
+
+            // Extra feature: subject select has placeholder "Select subject" (disabled selected).
+            // All good.
+
+            // Map click already added.
+            // one more enhancement: also clicking on phone / email show simple interaction? optional.
+            const infoItems = document.querySelectorAll('.info-item');
+            infoItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // just to show they are tappable (but not required, just friendly)
+                    console.log('contact info clicked', this.innerText.slice(0,20));
+                });
+            });
+
+        })();
+    </script>
+
+    <!-- small style adjustment for select arrow -->
+    <style>
+        select { appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>'); background-repeat: no-repeat; background-position: right 1.2rem center; background-size: 1.2rem; }
+        .success-message i { font-size: 1.4rem; }
+    </style>
+</body>
+</html>

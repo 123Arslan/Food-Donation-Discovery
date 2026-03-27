@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodShare · green & white theme</title>
+  <!-- CSS file (embedded for step-by-step demo, but structured as separate block) -->
+  <style>
+    /* ===== CSS STYLESHEET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #e6f3e6;  /* soft green background */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .card {
+      background: white;
+      max-width: 460px;
+      width: 100%;
+      border-radius: 2rem;
+      box-shadow: 0 25px 40px -15px #1e5e30;
+      padding: 2.2rem 2rem;
+      border: 1px solid #b8e0b0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #1a5e2a;
+      margin-bottom: 0.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subhead {
+      color: #2b6e3f;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+
+    /* tab buttons (Login / Sign Up) */
+    .tab-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #d0e8d0;
+      padding-bottom: 0.75rem;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #5f8b6f;
+      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      transition: 0.2s;
+    }
+
+    .tab-btn.active {
+      color: #1c7430;
+      border-bottom: 3px solid #1c7430;
+      margin-bottom: -0.8rem;
+    }
+
+    /* form group */
+    .input-group {
+      margin-bottom: 1.3rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: #1d6130;
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid #c0e0c0;
+      border-radius: 50px;
+      font-size: 1rem;
+      background-color: #fafffa;
+      outline: none;
+      transition: border 0.15s;
+    }
+
+    input:focus, select:focus {
+      border-color: #2d8745;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 1.2rem 0 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .checkbox-row label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 400;
+      color: #2b5434;
+      margin: 0;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: 1.1rem;
+      height: 1.1rem;
+      accent-color: #1f8245;
+      margin: 0;
+    }
+
+    .forgot-link {
+      color: #1b6e3d;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #8fc98f;
+    }
+
+    .forgot-link:hover {
+      color: #0b4a23;
+    }
+
+    /* main action button */
+    .primary-btn {
+      background: #1f8147;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 10px 20px -8px #196b39;
+      transition: 0.2s;
+      margin-bottom: 1.5rem;
+    }
+
+    .primary-btn:hover {
+      background: #15662f;
+      transform: scale(1.01);
+    }
+
+    .separator {
+      text-align: center;
+      color: #7aa57a;
+      font-weight: 500;
+      margin: 1.2rem 0;
+      position: relative;
+    }
+
+    .separator::before,
+    .separator::after {
+      content: "";
+      width: 30%;
+      height: 1px;
+      background: #c8e0c8;
+      vertical-align: middle;
+      margin: 0 0.6rem;
+    }
+
+    .google-btn {
+      background: white;
+      border: 2px solid #c0e0c0;
+      width: 100%;
+      padding: 0.9rem;
+      border-radius: 60px;
+      font-weight: 600;
+      color: #2c5e3a;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .google-btn:hover {
+      background-color: #f0fcf0;
+      border-color: #7fb77f;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* signup extra fields */
+    #signupForm .input-group:last-of-type {
+      margin-bottom: 1.5rem;
+    }
+
+    /* terms inline */
+    .terms-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .terms-row input {
+      width: 1.2rem;
+      height: 1.2rem;
+      accent-color: #1f8147;
+    }
+
+    .terms-row label {
+      margin: 0;
+      font-weight: 400;
+      color: #1c4d2a;
+    }
+
+    .terms-row a {
+      color: #196b39;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .message-banner {
+      background: #d4efdf;
+      color: #0b5225;
+      padding: 0.8rem;
+      border-radius: 60px;
+      text-align: center;
+      font-weight: 500;
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+      border: 1px solid #9fcf9f;
+    }
+
+    /* responsive adjustments */
+    @media (max-width: 400px) {
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .tab-btn {
+        font-size: 1.1rem;
+      }
+      .checkbox-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="appCard">
+    <!-- dynamic content will be handled by js, but we build both forms and toggle -->
+    <!-- we keep both forms, then hide one via js -->
+    <div id="loginFormBlock">
+      <div style="text-align: center;">
+    <img src="food.png" width="250px" height="100px" alt="FoodDonation Logo">
+</div>
+      <h1 style="text-align: center;">Food Donation Discovery</h1>
+      <p class="subhead" style="text-align: center;">Log in </p>
+
+      <!-- tabs inside form -->
+      <div class="tab-row">
+        <button class="tab-btn active" id="tabLoginBtn">Login</button>
+        <button class="tab-btn" id="tabSignupBtn">Sign Up</button>
+      </div>
+
+      <!-- login fields -->
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="Enter your email" value="">
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter your password" value="">
+      </div>
+
+      <div class="checkbox-row">
+        <label>
+          <input type="checkbox" id="rememberMe" checked> Remember me
+        </label>
+        <a href="#" class="forgot-link" id="forgetPasswordLink">Forget password?</a>
+      </div>
+
+      <button class="primary-btn" id="loginBtn">Login</button>
+
+      <div class="separator">OR CONTINUE WITH</div>
+
+      <button class="google-btn" id="loginGoogle">
+        <span></span> Continue with Google
+      </button>
+      <div id="loginMessage" class="message-banner" style="display: none;"></div>
+    </div>
+
+    <!-- SIGN UP FORM (initially hidden) -->
+    <div id="signupFormBlock" class="hidden">
+      <div style="text-align: center;">
+    <img src="food.png" width="250px" height="100px" alt="FoodDonation Logo">
+</div>
+      <h1 style="text-align: center;">Food Donation Discovery</h1>
+      <p class="subhead " style="text-align: center;">Sign in </p>
+
+      <div class="tab-row">
+        <button class="tab-btn" id="tabLoginBtn2">Login</button>
+        <button class="tab-btn active" id="tabSignupBtn2">Sign Up</button>
+      </div>
+
+      <!-- signup fields -->
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" id="signupName" placeholder="Your full name" value="">
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="signupEmail" placeholder="Enter your email" value="">
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="signupPassword" placeholder="Enter your password" value="">
+      </div>
+
+      <div class="input-group">
+        <label>Confirm Password</label>
+        <input type="password" id="signupConfirm" placeholder="Enter your confirm password" value="">
+      </div>
+
+      <div class="input-group">
+        <label>Account Type</label>
+        <select id="accountType">
+          <option value="">Select type</option>
+          <option value="Donor" selected>Donor</option>
+          <option value="NGO">NGO / Charity</option>
+          <option value="Volunteer">Volunteer</option>
+        </select>
+      </div>
+
+      <div class="terms-row">
+        <input type="checkbox" id="agreeTerms" checked>
+        <label for="agreeTerms">I agree to the <a href="#" id="termsLink">Terms & Conditions</a></label>
+      </div>
+
+      <button class="primary-btn" id="signupBtn">Sign Up</button>
+
+      <div class="separator">OR CONTINUE WITH</div>
+
+      <button class="google-btn" id="signupGoogle">
+        <span></span> Continue with Google
+      </button>
+      <div id="signupMessage" class="message-banner" style="display: none;"></div>
+    </div>
+  </div>
+
+  <!-- JavaScript file (separate block) -->
+  <script>
+    (function() {
+      "use strict";
+
+      // ----- get elements -----
+      const loginBlock = document.getElementById('loginFormBlock');
+      const signupBlock = document.getElementById('signupFormBlock');
+
+      const tabLogin = document.getElementById('tabLoginBtn');
+      const tabSignup = document.getElementById('tabSignupBtn');
+      const tabLogin2 = document.getElementById('tabLoginBtn2');
+      const tabSignup2 = document.getElementById('tabSignupBtn2');
+
+      // login elements
+      const loginEmail = document.getElementById('loginEmail');
+      const loginPass = document.getElementById('loginPassword');
+      const rememberCheck = document.getElementById('rememberMe');
+      const forgetLink = document.getElementById('forgetPasswordLink');
+      const loginBtn = document.getElementById('loginBtn');
+      const loginGoogle = document.getElementById('loginGoogle');
+      const loginMsg = document.getElementById('loginMessage');
+
+      // signup elements
+      const signupName = document.getElementById('signupName');
+      const signupEmail = document.getElementById('signupEmail');
+      const signupPass = document.getElementById('signupPassword');
+      const signupConfirm = document.getElementById('signupConfirm');
+      const accountType = document.getElementById('accountType');
+      const agreeTerms = document.getElementById('agreeTerms');
+      const signupBtn = document.getElementById('signupBtn');
+      const signupGoogle = document.getElementById('signupGoogle');
+      const signupMsg = document.getElementById('signupMessage');
+      const termsLink = document.getElementById('termsLink');
+
+      // ----- helper: show login, hide signup -----
+      function showLogin() {
+        if (loginBlock) loginBlock.classList.remove('hidden');
+        if (signupBlock) signupBlock.classList.add('hidden');
+        
+        // update active tabs (both sets)
+        if (tabLogin) tabLogin.classList.add('active');
+        if (tabSignup) tabSignup.classList.remove('active');
+        if (tabLogin2) tabLogin2.classList.add('active');
+        if (tabSignup2) tabSignup2.classList.remove('active');
+        
+        // hide any old messages
+        if (loginMsg) loginMsg.style.display = 'none';
+        if (signupMsg) signupMsg.style.display = 'none';
+      }
+
+      function showSignup() {
+        if (loginBlock) loginBlock.classList.add('hidden');
+        if (signupBlock) signupBlock.classList.remove('hidden');
+        
+        if (tabLogin) tabLogin.classList.remove('active');
+        if (tabSignup) tabSignup.classList.add('active');
+        if (tabLogin2) tabLogin2.classList.remove('active');
+        if (tabSignup2) tabSignup2.classList.add('active');
+        
+        if (loginMsg) loginMsg.style.display = 'none';
+        if (signupMsg) signupMsg.style.display = 'none';
+      }
+
+      // ----- event listeners for tabs (only if elements exist) -----
+      if (tabLogin) {
+        tabLogin.addEventListener('click', (e) => { e.preventDefault(); showLogin(); });
+      }
+      
+      if (tabSignup) {
+        tabSignup.addEventListener('click', (e) => { e.preventDefault(); showSignup(); });
+      }
+      
+      if (tabLogin2) {
+        tabLogin2.addEventListener('click', (e) => { e.preventDefault(); showLogin(); });
+      }
+      
+      if (tabSignup2) {
+        tabSignup2.addEventListener('click', (e) => { e.preventDefault(); showSignup(); });
+      }
+
+      // ----- login functionality -----
+      if (loginBtn) {
+        loginBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const email = loginEmail ? loginEmail.value.trim() : '';
+          const pass = loginPass ? loginPass.value.trim() : '';
+
+          if (!email || !pass) {
+            showMessage(loginMsg, '❌ Please fill in both fields.', true);
+            return;
+          }
+          if (!email.includes('@') || !email.includes('.')) {
+            showMessage(loginMsg, '❌ Enter a valid email address.', true);
+            return;
+          }
+          // fake success
+          const remember = rememberCheck && rememberCheck.checked ? 'with remember me' : 'without remember';
+          showMessage(loginMsg, `✅ Logged in as ${email} (${remember})`, false);
+          console.log('Login demo', { email, pass, remember: rememberCheck ? rememberCheck.checked : false });
+        });
+      }
+
+      if (forgetLink) {
+        forgetLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          showMessage(loginMsg, '🔐 Password reset link would be sent (demo).', false);
+        });
+      }
+
+      if (loginGoogle) {
+        loginGoogle.addEventListener('click', (e) => {
+          e.preventDefault();
+          showMessage(loginMsg, '🍃 Google Sign‑in demo – you would be redirected.', false);
+        });
+      }
+
+      // ----- signup functionality -----
+      if (signupBtn) {
+        signupBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const name = signupName ? signupName.value.trim() : '';
+          const email = signupEmail ? signupEmail.value.trim() : '';
+          const pass = signupPass ? signupPass.value.trim() : '';
+          const confirm = signupConfirm ? signupConfirm.value.trim() : '';
+          const accType = accountType ? accountType.value : '';
+
+          if (!name) {
+            showMessage(signupMsg, '❌ Please enter your full name.', true);
+            return;
+          }
+          if (!email || !email.includes('@')) {
+            showMessage(signupMsg, '❌ Valid email required.', true);
+            return;
+          }
+          if (!pass || pass.length < 4) {
+            showMessage(signupMsg, '❌ Password must be at least 4 characters.', true);
+            return;
+          }
+          if (pass !== confirm) {
+            showMessage(signupMsg, '❌ Passwords do not match.', true);
+            return;
+          }
+          if (!accType) {
+            showMessage(signupMsg, '❌ Please select account type.', true);
+            return;
+          }
+          if (agreeTerms && !agreeTerms.checked) {
+            showMessage(signupMsg, '❌ You must agree to the Terms.', true);
+            return;
+          }
+
+          // success
+          showMessage(signupMsg, `✅ Welcome, ${name}! Your ${accType} account created (demo).`, false);
+          console.log('Signup demo', { name, email, pass, accType });
+        });
+      }
+
+      if (signupGoogle) {
+        signupGoogle.addEventListener('click', (e) => {
+          e.preventDefault();
+          showMessage(signupMsg, '🍃 Google Sign‑up demo – you would be redirected.', false);
+        });
+      }
+
+      if (termsLink) {
+        termsLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('📜 Terms & Conditions (demo): We value your donations.');
+        });
+      }
+
+      // utility to show message
+      function showMessage(element, text, isError) {
+        if (!element) return;
+        
+        element.style.display = 'block';
+        element.textContent = text;
+        
+        if (isError) {
+          element.style.background = '#fbeae9';
+          element.style.color = '#b53b3b';
+          element.style.border = '1px solid #e0b3b3';
+        } else {
+          element.style.background = '#d4efdf';
+          element.style.color = '#0b5225';
+          element.style.border = '1px solid #9fcf9f';
+        }
+        
+        // auto hide after 5 sec for success
+        if (!isError) {
+          setTimeout(() => {
+            if (element) element.style.display = 'none';
+          }, 5000);
+        }
+      }
+
+      // ***** YAHAN SE PREFILL CODE HATAYA GAYA HAI *****
+      // prefill placeholder removal on focus (optional ux) - REMOVED
+      // also prefill for login email (nicety) - REMOVED
+
+      // ensure default view: login visible
+      showLogin();
+
+      // Input fields ko empty karne ke liye (optional)
+      if (signupName) signupName.value = '';
+      if (loginEmail) loginEmail.value = '';
+
+    })();
+
+  </script>
+
+  <!-- extra note: all buttons perform demo actions exactly as described, with validation -->
+  <!-- green/white theme consistent -->
+</body>
+</html>

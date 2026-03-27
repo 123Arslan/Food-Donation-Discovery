@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>FoodBridge · Donate food (fully responsive)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #d9e8d0;
+      color: #1d3e2c;
+      line-height: 1.5;
+      padding: 1rem;  /* reduced for mobile */
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 2rem;
+      box-shadow: 0 25px 45px -15px #1a5e35;
+      overflow: hidden;
+    }
+    header {
+    background-color: #2e7d32;
+    /* deep green */
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px rgba(0, 40, 0, 0.15);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #fff8e7;
+}
+
+.logo span {
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: #ffecb3;
+    margin-left: 6px;
+}
+
+
+
+
+.header-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .header-btn {
+      background: white;
+      border: 2px solid #2f8f53;
+      padding: 0.4rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #2f8f53;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .header-btn.active {
+      background: white;
+      color: green !important;
+      border-color: #1e7a47;
+    }
+
+    .header-btn:hover {
+      background: #e0f2e0;
+    }
+
+    .header-btn.active:hover {
+      background: #e0f2e0;
+    }
+
+
+
+
+
+
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.8rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #f1f8e9;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    border-bottom: 3px solid transparent;
+    transition: 0.2s;
+}
+
+nav a:hover,
+nav a.active {
+    border-bottom-color: #ffd54f;
+    color: #ffffff;
+}
+
+
+
+    /* --- responsive navbar --- */
+    /*
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: white;
+      border-bottom: 2px solid #c2e0b2;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1b6d3b;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem 1.2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1d4d2e;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .login-btn {
+      background: transparent;
+      border: 2px solid #2f8f53;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #2f8f53;
+    }
+
+    .donate-btn-nav {
+      background: #1e7a47;
+      color: white !important;
+      padding: 0.4rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 600;
+    }
+*/
+    /* main grid becomes stacked on mobile */
+    .main-content {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    /* left column */
+    .form-section h1 {
+      font-size: 2rem;
+      color: #1a5835;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .form-section .subtitle {
+      color: #2d6b42;
+      margin-bottom: 1.8rem;
+      font-size: 1.1rem;
+    }
+
+    .donor-info h2 {
+      color: #1a613b;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      border-left: 5px solid #4caf6e;
+      padding-left: 1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-field label {
+      font-weight: 600;
+      color: #1a613b;
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      border: 2px solid #d4ead0;
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      font-size: 0.95rem;
+      outline: none;
+      background-color: #f9fff9;
+      width: 100%;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    /* food details block */
+    .food-details {
+      background-color: #f2fbf0;
+      border-radius: 24px;
+      padding: 1.8rem;
+      margin: 1.5rem 0;
+      border: 1px solid #b8e0aa;
+    }
+
+    .food-details h2 {
+      color: #1b623b;
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .details-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    /* upload box */
+    .upload-box {
+      border: 2px dashed #8fc98f;
+      border-radius: 16px;
+      padding: 1.2rem;
+      text-align: center;
+      background: white;
+      margin: 0.5rem 0;
+    }
+
+    .upload-box p {
+      color: #2a7040;
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .upload-box small {
+      color: #558b5a;
+      font-size: 0.8rem;
+    }
+
+    .file-name {
+      color: #1d5e33;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      word-break: break-word;
+    }
+
+    /* right panel */
+    .info-panel {
+      background: #edf7e9;
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      border: 1px solid #bfe2b5;
+      height: fit-content;
+    }
+
+    .info-panel h3 {
+      color: #1b623b;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .benefits-list {
+      list-style: none;
+    }
+
+    .benefits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      color: #194d30;
+      font-size: 1rem;
+    }
+
+    .benefits-list li::before {
+      content: "✅";
+      color: #2a8a4a;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .verification-box {
+      background: white;
+      border-radius: 16px;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      border-left: 6px solid #3ca35e;
+    }
+
+    .impact-box {
+      background: white;
+      border-radius: 16px;
+      padding: 1.2rem;
+      text-align: center;
+      border: 1px solid #b8dba8;
+    }
+
+    /* big donate button */
+    .donate-btn {
+      background: #1f8147;
+      color: white;
+      border: none;
+      font-size: 1.4rem;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border-radius: 60px;
+      margin: 1.5rem auto;
+      display: block;
+      width: fit-content;
+      cursor: pointer;
+      box-shadow: 0 15px 25px -8px #1b6d3b;
+      transition: 0.2s;
+    }
+
+    .donate-btn:hover {
+      background: #156634;
+      transform: scale(1.02);
+    }
+/*
+    footer {
+      background: #def0d3;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      color: #1d4d2d;
+      border-top: 2px solid #b1d8a1;
+    }
+*/
+
+
+footer {
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+    color: #ffffff;
+    padding: 3rem 2rem 1.5rem;
+    margin-top: auto;
+    position: relative;
+}
+
+/* Top wave decoration */
+.footer-wave {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%232e7d32" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,170.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/></svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Footer main container */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Footer columns */
+.footer-col {
+    padding: 0rem;
+}
+
+.footer-col h3 {
+    color: #ffd966;
+    font-size: 1.3rem;
+    margin-bottom: 0rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-col h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    /*  background: #ffd966;*/
+}
+
+.footer-col p {
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Logo in footer */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.footer-logo i {
+    font-size: 2.5rem;
+    color: #ffd966;
+}
+
+.footer-logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.footer-logo-text span {
+    color: #ffd966;
+    font-size: 1rem;
+    display: block;
+}
+
+/* Quick links */
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #ffd966;
+    transform: translateX(5px);
+}
+
+.footer-links a i {
+    margin-right: 8px;
+    font-size: 0.9rem;
+    color: #ffd966;
+}
+
+/* Contact info */
+.contact-info {
+    list-style: none;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+    color: #e0e0e0;
+}
+
+.contact-info li i {
+    width: 20px;
+    color: #ffd966;
+    font-size: 1.1rem;
+}
+
+.contact-info a {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.contact-info a:hover {
+    color: #ffd966;
+}
+
+/* Social media icons */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    align-items: center;
+}
+
+.social-links a:hover {
+    background: #ffd966;
+    color: #1b5e20;
+    transform: translateY(-3px);
+}
+.fas fa-map-marker-alt {
+    color: red;
+}
+    .success-message {
+      background: #1f7343;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      max-width: 500px;
+      margin: 1rem auto;
+      text-align: center;
+      font-weight: 600;
+      display: none;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    .required::after {
+      content: " *";
+      color: #d44c4c;
+    }
+
+    /* ++++++++++++++++++++++++++++ */
+    /* RESPONSIVE BREAKPOINTS       */
+    /* ++++++++++++++++++++++++++++ */
+
+    /* tablet and below */
+    @media screen and (max-width: 900px) {
+      .main-content {
+        grid-template-columns: 1fr;  /* stack columns */
+        gap: 1.5rem;
+        padding: 1.5rem;
+      }
+
+      .info-panel {
+        order: 2; /* optional: keep order as is */
+      }
+    }
+
+    /* mobile landscape & small devices */
+    @media screen and (max-width: 650px) {
+      body {
+        padding: 0.5rem;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem;
+      }
+
+      .logo {
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .nav-links {
+        justify-content: center;
+        gap: 0.8rem 1rem;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;  /* stack all form fields */
+        gap: 0.8rem;
+      }
+
+      .full-width {
+        grid-column: span 1;
+      }
+
+      .details-row {
+        grid-template-columns: 1fr;  /* stack each row */
+        gap: 0.8rem;
+      }
+
+      .food-details {
+        padding: 1.2rem;
+      }
+
+      .form-section h1 {
+        font-size: 1.8rem;
+      }
+
+      .donate-btn {
+        font-size: 1.2rem;
+        padding: 0.9rem 2rem;
+        width: 90%;
+        text-align: center;
+      }
+
+      .upload-box div {
+        flex-direction: column;
+      }
+
+      .info-panel {
+        padding: 1.5rem 1rem;
+      }
+
+      .verification-box, .impact-box {
+        padding: 1rem;
+      }
+    }
+
+    /* very small phones (<=400px) */
+    @media screen and (max-width: 400px) {
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links a {
+        white-space: normal;
+        text-align: center;
+      }
+
+      .login-btn, .donate-btn-nav {
+        padding: 0.3rem 1rem;
+      }
+
+      .form-section h1 {
+        font-size: 1.6rem;
+      }
+
+      .donor-info h2 {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* fix for placeholder colors (keep consistent) */
+    ::placeholder {
+      color: #7d9e7d;
+      opacity: 0.7;
+    }
+
+    /* fake file button adapt */
+    #fakefileBtn {
+      white-space: nowrap;
+    }
+
+    @media screen and (max-width: 480px) {
+      #fakefileBtn {
+        white-space: normal;
+        font-size: 0.9rem;
+        padding: 0.4rem 1rem;
+      }
+    }
+
+
+
+
+
+
+
+    .map-placeholder {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.map-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.map-label {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 1rem;
+  backdrop-filter: blur(4px);
+}
+  </style>
+</head>
+<body>
+<div class="container">
+   <header>
+        <img src="ff.png" width="250px" height="90px" alt="FoodDonation Logo">
+        <nav>
+            <ul>
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="donor.html" class="active" id="nav-home">Donor</a></li>
+                <li><a href="impact.html">Our Impact</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            
+        </nav>  
+         <div class="header-buttons">
+            <button class="header-btn active" id="headerLoginBtn" onclick="location.href='login signup.html';">Login</button>
+            <button class="header-btn" id="headerSignupBtn" onclick="location.href='login signup.html';">Sign Up</button>
+     <!--<button class="header-btn active" id="headerLoginBtn">Login</button>
+      <button class="header-btn" id="headerSignupBtn" <a href="login signup.html">Sign Up</button>-->
+    </div>
+        
+    </header>
+
+  <!-- main flexible grid -->
+  <div class="main-content">
+    <!-- left form -->
+    <div class="form-section">
+      <h1>Donate Excess Food</h1>
+      <p class="subtitle">Fill in the details to list your food for donation</p>
+
+      <div class="donor-info">
+        <h2> Donor Information</h2>
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="required">Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter full name" value="">
+          </div>
+          <div class="form-field">
+            <label class="required">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" value="">
+          </div>
+          <div class="form-field">
+            <label class="required">Phone Number</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number" value="">
+          </div>
+          <div class="form-field">
+            <label class="required">Pickup Address</label>
+            <input type="text" id="address" placeholder="Full pickup address" value="">
+          </div>
+        </div>
+      </div>
+
+      <div class="food-details">
+        <h2>Food Details</h2>
+        <div class="details-row">
+          <div class="form-field">
+            <label>Food Name</label>
+            <input type="text" id="foodName" placeholder="Food Name" value="">
+          </div>
+          <div class="form-field">
+            <label class="required">Food Category</label>
+            <select id="category">
+              <option value=""> Select category</option>
+              <option value="Cooked Food" selected>Cooked Food</option>
+              <option value="Fresh produce">Fresh produce</option>
+              <option value="Packaged goods">Packaged goods</option>
+              <option value="Bakery">Bakery</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="details-row">
+          <div class="form-field">
+            <label class="required">Quantity</label>
+            <input type="text" id="quantity" placeholder="e.g., 5 kg, 10 plates" value="">
+          </div>
+          <div class="form-field">
+            <label class="required">Available Date & Time</label>
+          <input type="datetime-local" id="availableTime" value="2026-03-18T18:00"
+       style="width: 250px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+          </div>
+        </div>
+
+        <div class="details-row">
+          <div class="form-field">
+            <label class="required">Fresh Until</label>
+            <input type="text" id="expiry" placeholder="e.g., 3 hours, 2 days" value="">
+          </div>
+          <div class="form-field">
+            <label>Food Image</label>
+            <div class="upload-box">
+              <input type="file" id="foodImage" accept="image/png, image/jpeg" style="display: none;">
+              <div style="display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                <button type="button" id="fakefileBtn" style="background:#e1f0da; border:2px solid #8fc98f; padding:0.5rem 1.5rem; border-radius:40px; font-weight:600; color:#1d6138; cursor:pointer; font-size:0.95rem;">Choose File</button>
+                <span id="fileDisplay" style="color:#3b6e4b; word-break:break-word;"><!--No file chosen--></span>
+              </div>
+              <p style="margin-top:0.5rem;">Click or drag to upload a photo of the food</p>
+              <small>PNG, JPG, max 5MB</small>
+              <div class="file-name" id="fileName"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field full-width">
+          <label>Additional Notes</label>
+          <textarea id="notes" rows="3" placeholder="Any special instructions or details...">Any special instructions or details...</textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- right panel -->
+    <div class="info-panel">
+      <h3>Why Donate?</h3>
+      <ul class="benefits-list">
+        <li>Help feed families and individuals in need</li>
+        <li>Reduce food waste and protect the environment</li>
+        <li>Quick and easy donation process</li>
+        <li>Make a real difference in your community</li>
+      </ul>
+      <div class="verification-box">
+        <strong>✅ Safe & Verified</strong><br>
+        All our NGO partners are verified for safe food handling and distribution.
+      </div>
+      <!--
+      <div class="impact-box">
+        <strong>📍 Your Local Impact Area</strong><br>
+        <p style="margin-top: 0.5rem;">Find NGOs and food banks near you</p>
+      </div>-->
+      <div class="map-placeholder">
+  <img 
+    src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=600&h=300&fit=crop" 
+    alt="Map" 
+    class="map-img"
+  >
+  <div class="map-label">Your Local Impact Area</div>
+</div>
+    </div>
+  </div>
+
+  <button class="donate-btn" id="donateButton">List Donation</button>
+  <div id="successMessage" class="success-message">🎉 Thank you! Your donation has been listed.</div>
+
+   <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="footer-wave"></div>
+
+        <div class="footer-container">
+            <!-- Column 1: About -->
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="ff.png" width="200px" height="60px" alt="FoodDonation Logo">
+                </div>
+                <p>Connecting surplus food with those in need. Together we can reduce waste and fight hunger.</p>
+
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links ">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="impact.html">Our Impact</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+
+             <!-- Column 3: Quick Links -->
+            <div class="footer-col">
+                <h3>Support</h3>
+                <ul class="footer-links ">
+                    <li><a href="Contact us.html">Contact us</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="Privacy Policy.html">Privacy Policy</a></li>
+                    <li><a href="Terms of Service.html">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Contact Info -->
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-location-dot"></i>
+                        <span>123 Food Street, Green Town, Pakistan</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+923430686603">+92 343 0686603</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@fooddonation.com">info@fooddonation.com</a>
+                    </li>
+                </ul>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom center">
+            <p>2026 Food Donation Platform. All rights reserved</p>
+        </div>
+    </footer>
+
+ <!-- <footer>
+    <span style="display:block; font-size:1.2rem; font-weight:600; color:#1a5835;">Let Donation</span>
+    <span style="display:block; margin-top:0.5rem;">© 2025 FoodBridge. Made with <span style="color: #d44c4c;">❤️</span> to fight hunger. | All rights reserved.</span>
+  </footer>-->
+</div>
+
+<script>
+  (function() {
+    const fullName = document.getElementById('fullName');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const address = document.getElementById('address');
+    const category = document.getElementById('category');
+    const quantity = document.getElementById('quantity');
+    const availableTime = document.getElementById('availableTime');
+    const expiry = document.getElementById('expiry');
+    const notes = document.getElementById('notes');
+    const foodImage = document.getElementById('foodImage');
+    const fileName = document.getElementById('fileName');
+    const donateBtn = document.getElementById('donateButton');
+    const successMsg = document.getElementById('successMessage');
+    const fakeBtn = document.getElementById('fakefileBtn');
+    const fileDisplay = document.getElementById('fileDisplay');
+
+    fakeBtn.addEventListener('click', function() {
+      foodImage.click();
+    });
+
+    foodImage.addEventListener('change', function() {
+      if (this.files.length > 0) {
+        const f = this.files[0];
+        fileDisplay.textContent = f.name;
+        fileName.textContent = `Selected: ${f.name}`;
+
+        const fileSizeMB = f.size / 1024 / 1024;
+        if (fileSizeMB > 5) {
+          alert('❌ File size must be less than 5MB.');
+          this.value = '';
+          fileDisplay.textContent = 'No file chosen';
+          fileName.textContent = '';
+        }
+      } else {
+        fileDisplay.textContent = 'No file chosen';
+        fileName.textContent = '';
+      }
+    });
+
+    function validateForm() {
+      if (!fullName.value.trim() || fullName.value === 'Your full name') {
+        alert('❌ Please enter your full name.');
+        fullName.focus();
+        return false;
+      }
+      const emailVal = email.value.trim();
+      if (!emailVal || emailVal === 'you@email.com' || !emailVal.includes('@') || !emailVal.includes('.')) {
+        alert('❌ Please enter a valid email address (e.g., you@email.com).');
+        email.focus();
+        return false;
+      }
+      if (!phone.value.trim() || phone.value === '+92 1234 567890') {
+        alert('❌ Please enter your phone number.');
+        phone.focus();
+        return false;
+      }
+      if (!address.value.trim() || address.value === 'Full pickup address') {
+        alert('❌ Please enter your pickup address.');
+        address.focus();
+        return false;
+      }
+      if (!category.value) {
+        alert('❌ Please select a food category.');
+        category.focus();
+        return false;
+      }
+      if (!quantity.value.trim() || quantity.value === 'e.g., 5 kg, 10 plates') {
+        alert('❌ Please enter the quantity.');
+        quantity.focus();
+        return false;
+      }
+      if (!availableTime.value.trim() || availableTime.value === 'mm/dd/yyyy --- -- ---') {
+        alert('❌ Please enter available date & time (mm/dd/yyyy).');
+        availableTime.focus();
+        return false;
+      }
+      if (!expiry.value.trim() || expiry.value === 'e.g., 3 hours, 2 days') {
+        alert('❌ Please enter fresh until information.');
+        expiry.focus();
+        return false;
+      }
+      return true;
+    }
+
+    donateBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (!validateForm()) return;
+
+      console.log('Donation submitted:', {
+        name: fullName.value,
+        email: email.value,
+        phone: phone.value,
+        address: address.value,
+        category: category.value,
+        quantity: quantity.value,
+        available: availableTime.value,
+        expiry: expiry.value,
+        notes: notes.value,
+        image: foodImage.files.length ? foodImage.files[0].name : 'none'
+      });
+
+      successMsg.classList.add('show');
+      setTimeout(() => successMsg.classList.remove('show'), 5000);
+    });
+
+    // demo nav
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const text = this.innerText;
+        if (this.classList.contains('donate-btn-nav')) {
+          document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+        } else if (this.classList.contains('login-btn')) {
+          alert('🔐 Login demo — simply a preview');
+        } else {
+          alert(`🌿 FoodBridge demo: ${text} section`);
+        }
+      });
+    });
+
+    // placeholder behaviour
+    const defaultInputs = [
+      { el: fullName, defaultVal: 'Your full name' },
+      { el: email, defaultVal: 'you@email.com' },
+      { el: phone, defaultVal: '+92 1234 567890' },
+      { el: address, defaultVal: 'Full pickup address' },
+      { el: quantity, defaultVal: 'e.g., 5 kg, 10 plates' },
+      { el: availableTime, defaultVal: 'mm/dd/yyyy --- -- ---' },
+      { el: expiry, defaultVal: 'e.g., 3 hours, 2 days' }
+    ];
+
+    defaultInputs.forEach(item => {
+      const input = item.el;
+      input.addEventListener('focus', function() {
+        if (this.value === item.defaultVal) this.value = '';
+      });
+      input.addEventListener('blur', function() {
+        if (this.value.trim() === '') this.value = item.defaultVal;
+      });
+    });
+
+    const notesDefault = 'Any special instructions or details...';
+    notes.addEventListener('focus', function() {
+      if (this.value === notesDefault) this.value = '';
+    });
+    notes.addEventListener('blur', function() {
+      if (this.value.trim() === '') this.value = notesDefault;
+    });
+  })();
+</script>
+</body>
+</html>

@@ -249,3 +249,150 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log('Script loaded successfully - Home page ready');
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Data for "What You Can Donate" categories based on the design
+const categoriesData = [
+    { name: "Cooked Food", desc: "Ready-to-eat meals", emoji: "1" },
+    { name: "Packaged Food", desc: "Sealed & preserved", emoji: "2" },
+    { name: "Raw Food", desc: "Fresh produce & grains", emoji: "3" },
+    { name: "Beverages", desc: "Drinks & water", emoji: "4" }
+];
+
+// Render categories grid dynamically
+function renderCategories() {
+    const grid = document.getElementById('foodCategoriesGrid');
+    if (!grid) return;
+    
+    grid.innerHTML = '';
+    
+    categoriesData.forEach(cat => {
+        const card = document.createElement('div');
+        card.className = 'category-card';
+        card.setAttribute('data-category', cat.name);
+        
+        card.innerHTML = `
+            <div class="category-emoji">${cat.emoji}</div>
+            <div class="category-name">${cat.name}</div>
+            <div class="category-desc">${cat.desc}</div>
+        `;
+        
+        // Click handler for each category card
+        card.addEventListener('click', () => {
+            const selectElem = document.getElementById('foodType');
+            if (selectElem) {
+                // Match value to category
+                let val = cat.name;
+                if (cat.name === "Cooked Food") selectElem.value = "Cooked Food";
+                else if (cat.name === "Packaged Food") selectElem.value = "Packaged Food";
+                else if (cat.name === "Raw Food") selectElem.value = "Raw Food";
+                else if (cat.name === "Beverages") selectElem.value = "Beverages";
+                
+                // Scroll to form smoothly
+                document.getElementById('donate-now').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+                
+                // Visual feedback: temporary highlight on form panel
+                const formPanel = document.querySelector('.donate-form-panel');
+                if (formPanel) {
+                    formPanel.style.transition = '0.2s';
+                    formPanel.style.boxShadow = '0 0 0 3px #2c6e2f';
+                    setTimeout(() => { 
+                        formPanel.style.boxShadow = ''; 
+                    }, 800);
+                }
+            }
+        });
+        
+        grid.appendChild(card);
+    });
+}
+
+// Initialize the categories section when DOM is ready
+document.addEventListener('DOMContentLoaded', renderCategories);
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ========== BACKGROUND SLIDER LOGIC ==========
+        const slides = document.querySelectorAll('.bg-slider .slide');
+        let currentIndex = 0;
+        let slideInterval;
+        const SLIDE_DURATION = 5000;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active-slide');
+            });
+            if (index >= slides.length) currentIndex = 0;
+            else if (index < 0) currentIndex = slides.length - 1;
+            else currentIndex = index;
+            slides[currentIndex].classList.add('active-slide');
+        }
+
+        function nextSlide() { showSlide(currentIndex + 1); }
+        function startSlider() { if (slideInterval) clearInterval(slideInterval); slideInterval = setInterval(nextSlide, SLIDE_DURATION); }
+        
+        if (slides.length) {
+            startSlider();
+            const sliderContainer = document.querySelector('.bg-slider');
+            if (sliderContainer) {
+                sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+                sliderContainer.addEventListener('mouseleave', startSlider);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        

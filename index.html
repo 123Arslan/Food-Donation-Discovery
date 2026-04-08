@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS link -->
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="icon" type="image/png" href="food.png" >
+    <link rel="icon" type="image/png" href="foo.png" >
 </head>
 
 <body>
+    
+    
     <!-- ==================== HEADER / NAVIGATION ==================== -->
     <header>
         <img src="ff.png" width="250px" height="90px" alt="FoodDonation Logo">
@@ -21,6 +23,7 @@
                 <li><a href="index.html" class="active" id="nav-home">Home</a></li>
                 <li><a href="About.html">About</a></li>
                 <li><a href="donor.html">Donor</a></li>
+                 <li><a href="request.html">request</a></li>
                 <li><a href="impact.html">Our Impact</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
@@ -29,27 +32,43 @@
          <div class="header-buttons">
             <button class="header-btn active" id="headerLoginBtn" onclick="location.href='login signup.html';">Login</button>
             <button class="header-btn" id="headerSignupBtn" onclick="location.href='login signup.html';">Sign Up</button>
-     <!--<button class="header-btn active" id="headerLoginBtn">Login</button>
-      <button class="header-btn" id="headerSignupBtn" <a href="login signup.html">Sign Up</button>-->
     </div>
         
     </header>
-
+  
     <!-- ==================== MAIN CONTENT AREA ==================== -->
     <main id="main-content">
+        
+        
         <!-- HOME SECTION -->
         <section id="home-section" class="page active-page">
-            <!-- Video Background -->
-            <div class="video-background">
-                <video autoplay muted loop playsinline>
-                    <source src="food-donation-video.mp4" type="video/mp4">
-                    <source src="food-donation-video.webm" type="video/webm">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="video-overlay"></div>
-            </div>
-
+           
+           
             <div class="hero">
+                
+                     <!-- Background Slider Component -->
+        <div class="bg-slider">
+            <div class="slide active-slide" style="background-image: url('https://images.pexels.com/photos/6352824/pexels-photo-6352824.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/6646905/pexels-photo-6646905.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/6646893/pexels-photo-6646893.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/4606289/pexels-photo-4606289.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/6646957/pexels-photo-6646957.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+            <div class="overlay-dark"></div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <p class="tagline">
                     Extra food can feed those in need.<br>
                     <span>Donate today</span>
@@ -57,6 +76,9 @@
 
                 <!-- Donor and Receiver Images -->
                 <div class="images-container">
+                    
+                
+
                     <!-- Donor Image Card -->
                     <div class="image-card">
                         <div class="image-wrapper">
@@ -91,60 +113,53 @@
             </div>
         </section>
 
-        <!-- ABOUT SECTION (hidden by default) -->
-        <section id="about-section" class="page">
-            <div class="container">
-                <h2>About Us</h2>
-                <div class="about-content">
-                    <p>FoodDonation Platform connects surplus food from restaurants, events, and individuals with local
-                        shelters and people in need. Our mission is to reduce food waste while fighting hunger in our
-                        communities.</p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Cities</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">1000+</span>
-                            <span class="stat-label">Volunteers</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">100+</span>
-                            <span class="stat-label">Partners</span>
-                        </div>
-                    </div>
-                </div>
+      <!--  <div class="container">-->
+        <!-- Stats Section: Meals Donated / People Helped / Active Partners -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="mealsCount">25,430+</div>
+                <div class="stat-label">Meals Donated</div>
             </div>
-        </section>
+            <div class="stat-card">
+                <div class="stat-number" id="peopleCount">12,800+</div>
+                <div class="stat-label">People Helped</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="partnersCount">150</div>
+                <div class="stat-label">Active Partners</div>
+            </div>
+        </div>
 
-        <!-- IMPACT SECTION (hidden by default) -->
-        <section id="impact-section" class="page">
-            <div class="container">
-                <h2>Our Impact</h2>
-                <div class="impact-grid">
-                    <div class="impact-card">
-                        <i class="fas fa-utensils"></i>
-                        <span class="impact-number">2.3M</span>
-                        <span class="impact-label">Meals Provided</span>
-                    </div>
-                    <div class="impact-card">
-                        <i class="fas fa-hand-holding-heart"></i>
-                        <span class="impact-number">850+</span>
-                        <span class="impact-label">Partners</span>
-                    </div>
-                    <div class="impact-card">
-                        <i class="fas fa-city"></i>
-                        <span class="impact-number">120</span>
-                        <span class="impact-label">Cities</span>
-                    </div>
-                    <div class="impact-card">
-                        <i class="fas fa-users"></i>
-                        <span class="impact-number">18k</span>
-                        <span class="impact-label">Volunteers</span>
-                    </div>
-                </div>
+        <!-- What You Can Donate Section -->
+        <div class="section-title " style="text-align: center;">What You Can Donate</div>
+        <div class="categories-grid" id="foodCategoriesGrid">
+            <!-- dynamic data from provided list but also static generation with JS to ensure correct functionality -->
+        </div>
+
+        <!-- How It Works Section (3 steps) -->
+        <div id="how-it-works" class="section-title" style="text-align: center;">How It Works</div>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>List Your Food</h3>
+                <p>Fill a quick form with food details and pickup info.</p>
+                
             </div>
-        </section>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Get Matched</h3>
+                <p>We connect you with nearby NGOs or individuals in need.</p>
+                
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Deliver or Pickup</h3>
+                <p>Coordinate a pickup or delivery to complete the donation.</p>
+                
+        </div>
+
+
+
     </main>
 
     <!-- ==================== FOOTER ==================== -->
@@ -163,8 +178,8 @@
 
             <!-- Column 2: Quick Links -->
             <div class="footer-col"  >
-                <h3>Quick Links</h3>
-                <ul class="footer-links " style="text-align: center;">
+                <h3 >Quick Links</h3>
+                <ul class="footer-links " >
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="impact.html">Our Impact</a></li>
